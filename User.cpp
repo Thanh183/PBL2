@@ -1,50 +1,59 @@
 #include "User.h"
-
-User::User( string name, int age, int ID, int phoneNumber, string address )
+using namespace std;
+User::User()
 {
+    this-> ID= "Ma thu vien";
+    this-> name="Ten";
+    this-> age=0;
+    this-> phonenumber="So dien thoai";
+    this-> address="Dia chi";
+}
+
+User::User( string ID, string name, int age, string phonenumber, string address )
+{
+    this-> ID=ID;
     this-> name=name;
     this-> age=age;
-    this-> ID=ID;
-    this-> phoneNumber=phoneNumber;
+    this-> phonenumber=phonenumber;
     this-> address=address;
 }
-string User:: getname()
-{
-    return this-> name;
-}
-void User:: setname(string name)
-{
-    this->name=name;
-}
-int User:: getage()
-{
-    return this->age;
-}
-void User:: setage(int age)
-{
-    this->age=age;
-}
-int User:: getID()
+string User::getID()
 {
     return this->ID;
 }
-void User:: setID(int ID)
+void User::setID(string ID)
 {
     this->ID=ID;
 }
-int User:: getphoneNumber()
+string User::getname()
 {
-    return this->phoneNumber;
+    return this-> name;
 }
-void User:: setphoneNumber(int phoneNumber)
+void User::setname(string name)
 {
-    this->phoneNumber=phoneNumber;
+    this->name=name;
 }
-string User:: getaddress()
+int User::getage()
+{
+    return this->age;
+}
+void User::setage(int age)
+{
+    this->age=age;
+}
+string User::getphonenumber()
+{
+    return this->phonenumber;
+}
+void User::setphonenumber(string phonenumber)
+{
+    this->phonenumber=phonenumber;
+}
+string User::getaddress()
 {
     return this->address;
 }
-void User:: setaddress(string address)
+void User::setaddress(string address)
 {
     this->address=address;
 }

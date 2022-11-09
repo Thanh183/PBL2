@@ -1,24 +1,25 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-#pragma once
 class User
 {
 private:
     string name;
     int age;
-    int ID;
-    int phoneNumber;
+    string ID;
+    string phonenumber;
     string address;
 public:
-    User(string, int, int, int, string);
+    static int numUser;
+    User();
+    User(string, string, int, string, string);
+    string getID();
+    void setID(string ID);
     string getname();
     void setname(string name);
     int getage();
     void setage(int age);
-    int getID();
-    void setID(int ID);
-    int getphoneNumber();
-    void setphoneNumber(int phoneNumber);
+    string getphonenumber();
+    void setphonenumber(string phonenumber);
     string getaddress();
     void setaddress(string address);
     ~User();
