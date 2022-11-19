@@ -3,31 +3,3 @@
 0003,Nguyen Duc Chung,19,0378427964,Le Loi
 0004,Le Minh Duy,19,0777512925,Le Lai
 0005,Nguyen thi thu Ha,19,0988274803,Tran Nhan Tong    
-0006,Nguyen Huu Hiep,19,0349839628,Ly Thai To
-0007,Pham Trung Hieu,19,0978177429,Ly Thai To
-0008,Tran Kim Hieu,19,0768527926,Le Dinh Ly
-0009,Chau Diem Hoang,19,0905560643,Ham Nghi
-0010,Doan Thi Phuoc Huyen,19,0769989432,Tran Thanh Tong
-0011,Truong Cong Hoang Long,19,0762668222,Hoang Van Thu
-0012,Dang Nhat Minh,19,0796250097,Nguyen Van Linh
-0013,Nguyen Truong Anh Minh,19,0769639972,Nguyen Hoang
-0014,Tran Le Minh,19,0769639972,Do Quang
-0015,Nguyen Minh Ngoc,19,0868208370,Dien Bien Phu
-0016,Nguyen Ngoc Bao Nhan,19,0935149368,Dien Bien Phu
-0017,Nguyen Ho Minh Quan,19,0704410611,Tran Thanh Tong
-0018,Tran Tan Thanh,19,0369740905,Chuc Dong
-0019,Huynh Thi Hoang Thu,19,0702484055,Ngo Si Lien
-0020,Pham Thanh Vinh,19,0348219257,Ngo Si Lien
-0021,Nguyen Pham Nhat Vy,19,0905873860,Ninh Ton
-0022,Bui Tuan Anh,19,0342973670,Hoa Phu 5
-0024,Nguyen Gia Bao,19,0373650403,Tran Thanh Tong
-0025,Huynh Hai Dang,19,0787614533,Nguyen Chanh
-0026,Nguyen Duc Dung,19,0869805823,Nguyen Chanh
-0027,Thai Khac Duoc,19,0987125147,Pham Nhu Xuong
-0028,Pham Dinh Ha,19,0362651324,Pham Nhu Xuong
-0029,Hoang Duc Khanh,19,0975658549,Ha Van tinh
-0030,Nguyen Thanh Liem,19,0869108754,Le Doan Nha
-0031,Do Dinh Manh,19,0332842309,Chon Tam 2
-0032,Nguyen Binh Minh,19,0981527513,Phu Xuan 9
-0033,Phan Thi Thanh Nhan,19,0388291839,To Hoi
-0034,Pham Quang Nhut,19,0932417536,Ho Tung Mau

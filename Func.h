@@ -1,15 +1,12 @@
 #include "Book.h"
-#include "User.h"
-
+#pragma once
 class Func
 {
 private:
     Book *b;
-    User *s;
     int numBook;
-    int numUser;
 public:
-    Func(int=0,int=0);
+    Func(int=0);
     ~Func();
     int getnumBook();
     void setnumBook(int);
@@ -19,5 +16,6 @@ public:
     void insertBook(int);           //them sach vao vi tri bat ki
     void removeBook();              //xoa sach theo ma sach
     void updateBook();              //chinh sua sach
+    friend class Funu;
 };
 

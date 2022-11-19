@@ -1,32 +1,27 @@
 #include"Book.h"
-Book:: Book()
+// Book:: Book()
+// {
+//     this->name="Ten sach";
+//     this->numCode="Ma sach";
+//     this->category="Loai sach";
+//     this->author="Tac gia";
+//     this->publisher="Nxb";
+// }
+Book::Book(string name, string numCode, string category, string author, string publisher)
 {
-    this->name="Ten sach";
-    this->numCode="Ma sach";
-    this->category="Loai sach";
-    this->quantity=0;
-    this->author="Tac gia";
-    this->publisher="Nxb";
-    this->status=0;
-
-}
-Book:: Book(string name, string numCode, string category, int quantity, string author, string publisher,int status)
-{
-    this->name=name;
+    this->title=name;
     this->numCode=numCode;
     this->category=category;
-    this->quantity=quantity;
     this->author=author;
     this->publisher=publisher;
-    this->status=status;
 }
-string Book:: getname()
+string Book:: gettitle()
 {
-    return this->name;
+    return this->title;
 }
-void Book:: setname(string name)
+void Book:: settitle(string name)
 {
-    this->name=name;
+    this->title=name;
 }
 string Book:: getnumCode()
 {
@@ -44,14 +39,6 @@ void Book:: setcategory(string category)
 {
     this->category=category;
 }
-int Book:: getquantity()
-{
-    return this->quantity;
-}
-void Book:: setquantity(int quantity)
-{   
-    this->quantity=quantity;
-}
 string Book:: getauthor()
 {
     return this->author;
@@ -67,14 +54,6 @@ string Book::getpublisher()
 void Book::setpublisher(string publisher)
 {
     this->publisher=publisher;
-}
-int Book::getstatus()
-{
-    return this->status;
-}
-void Book::setstatus(int status)
-{
-    this->status=status;
 }
 Book::~Book(){
     

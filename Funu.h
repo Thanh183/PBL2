@@ -1,5 +1,8 @@
 #include "User.h"
-
+#include "Func.h"
+#include <iostream>
+using namespace std;
+#pragma once
 class Funu
 {
 private:
@@ -11,9 +14,15 @@ public:
     int getnumUser();
     void setnumUser(int);
     void readUser();                //doc du lieu tu file
-    void showUser();                 //in ra mh tat ca sach
-    void addUser();                 //them sach vao cuoi
-    void insertUser(int);           //them sach vao vi tri bat ki
-    void removeUser();              //xoa sach theo ma sach
+    void showUser();                 //in ra mh tat ca user
+    void addUser();                 //them user vao cuoi
+    void insertUser(int);           //them user vao vi tri bat ki
+    void removeUser();              //xoa user theo ma sach
     void updateUser();
+    //friend class User;
+    void readMS();
+    void showMS();
+    void addBl(int k,Book);
+    void borrowB();
+    void returnB();
 };

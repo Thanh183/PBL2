@@ -1,4 +1,7 @@
+#include "Book.h"
+#include "Date.h"
 #include<iostream>
+#pragma once
 using namespace std;
 class User
 {
@@ -8,10 +11,12 @@ private:
     string ID;
     string phonenumber;
     string address;
+    Book *ab;
+    int numBl;
 public:
-    static int numUser;
-    User();
-    User(string, string, int, string, string);
+    
+    //User();
+    User(string="", string="", int=0, string="", string="");
     string getID();
     void setID(string ID);
     string getname();
@@ -22,5 +27,8 @@ public:
     void setphonenumber(string phonenumber);
     string getaddress();
     void setaddress(string address);
+    int getnumBl();
+    void setnumBl(int);
+    friend class Funu;
     ~User();
 };  

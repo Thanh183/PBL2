@@ -4,30 +4,23 @@ using namespace std;
 class Book
 {
 private:
-    string name;
+    string title;
     string numCode;
     string category;
-    int quantity;
     string author;
     string publisher;
-    int status;
 public:
-    static int numBook;
-    Book();
-    Book(string, string, string, int, string, string, int);
-    string getname();
-    void setname(string name);
+    // Book();
+    Book(string="", string="", string="", string="", string="");
+    string gettitle();
+    void settitle(string);
     string getnumCode();
-    void setnumCode(string numCode);
+    void setnumCode(string);
     string getcategory();
-    void setcategory(string category);
-    int getquantity();
-    void setquantity(int quantity);
+    void setcategory(string);
     string getauthor();
-    void setauthor(string author);
+    void setauthor(string);
     string getpublisher();
-    void setpublisher(string publisher);
-    int getstatus();
-    void setstatus(int status);
+    void setpublisher(string);
     ~Book();
 };  

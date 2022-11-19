@@ -7,7 +7,10 @@ Funu::Funu(int numUser)
     this->s=0;
     this->numUser=0;
 }
-Funu::~Funu(){};
+Funu::~Funu()
+{
+    delete[] this->s;
+}
 int Funu::getnumUser()
 {
     return this->numUser;
@@ -64,7 +67,7 @@ void Funu::readUser()
     cout<<"Doc du lieu thanh cong!"<<endl;
 }
 void Funu::showUser()
-{
+{   
     for(int i=0;i<this->numUser;i++)
     {
         cout<<(this->s+i)->getID()<<", ";
@@ -75,7 +78,8 @@ void Funu::showUser()
     }
 }
 void Funu::addUser()
-{      
+{   
+    readUser();
     showUser();
     ofstream addfile("User.txt", ios::out| ios::app);
     User temp;
@@ -136,6 +140,7 @@ void Funu::addUser()
 }
 void Funu::insertUser(int index)
 {   
+    readUser();
     showUser();
     ofstream addfile("User.txt", ios::out| ios::trunc);
     User temp;
@@ -194,6 +199,7 @@ void Funu::insertUser(int index)
 }
 void Funu::removeUser()
 {   
+    readUser();
     showUser();
     string temp;
     cout<<"Nhap ID muon xoa: ";
@@ -248,6 +254,7 @@ void Funu::removeUser()
 }
 void Funu::updateUser()
 {
+    readUser();
     showUser();
     int select=0;
     do
@@ -325,4 +332,187 @@ void Funu::updateUser()
         cout<<"Chon 1 de tiep tuc || Chon 0 de thoat !"<<endl;
         cin>>select;
     } while (select == 1);
+}
+void Funu::addBl(int k,Book b)
+{   
+    
+    // if((this->s+k)->numBl == 0)
+    // {   
+    //     (this->s+k)->bl=new Book[(this->s+k)->numBl+1];
+    //     *(this->s +k)->bl=b;
+    // }
+    // else
+    // {   
+    //     Book* q=new Book[(this->s+k)->numBl];
+    //     for(int i=0;i<(this->s+k)->numBl;i++)
+    //     {
+    //         *(q+i)=(this->s+k)->bl[i];
+    //     }
+    //     delete[] (this->s+k)->bl;
+    //     (this->s+k)->bl=new Book[(this->s+k)->numBl+1];
+    //     for(int i=0;i<(this->s+k)->numBl;i++)
+    //     {
+    //         (this->s+k)->bl[i]=*(q+i);
+    //     }
+    //     int x=(this->s+k)->numBl;
+    //     (this->s+k)->bl[x]=b;
+    //     delete[] q;
+    // }
+    // (this->s+k)->numBl++;
+}
+void Funu::readMS()
+{   
+    Func bl;Book b;
+    string tmp;
+    bl.readBook();
+    readUser();
+    ifstream readfile("muonsach.txt");
+    while(!readfile.eof())
+    {   
+        string name;
+        string title;
+        string m,t;
+        int k;
+        getline(readfile,name,',');
+        for(int i=0;i<this->numUser;i++)
+        {
+            if((this->s+i)->getname()== name)
+            {
+                int k=i;
+                break;
+            }
+        }
+        getline(readfile,title,',');
+        for(int i=0;i<bl.numBook;i++)
+        {
+            if((bl.b+i)->gettitle()==title)
+            {
+                b=*(bl.b+i);
+                break;
+            }
+        }
+        
+        // ++(this->s+k)->numBl;
+        // (this->s+k)->ab[(this->s+k)->numBl]=b;
+
+        if((this->s+k)->numBl == 0)
+        {   
+            (this->s+k)->ab=new Book[(this->s+k)->numBl+1];
+        // int x=(this->s+k)->numBl;
+            (this->s +k)->ab[0]=b;
+        }
+        else
+        {   
+            Book* q=new Book[(this->s+k)->numBl];
+            for(int i=0;i<(this->s+k)->numBl;i++)
+            {   
+                *(q+i)=(this->s+k)->ab[i];
+            }
+            delete[] (this->s+k)->ab;
+            (this->s+k)->ab=new Book[(this->s+k)->numBl+1];
+            for(int i=0;i<(this->s+k)->numBl;i++)
+            {
+                (this->s+k)->ab[i]=*(q+i);
+            }
+            int x=(this->s+k)->numBl;
+            (this->s+k)->ab[x]=b;
+            delete[] q;
+        }
+        ++(this->s+k)->numBl;
+        //addBl(k,b);
+        cout<<"vd"<<endl;
+        getline(readfile,m);  
+    }
+    readfile.close();
+    cout<<"Doc du lieu file MS thanh cong"<<endl;
+}
+void Funu::showMS()
+{   
+    readMS();
+    for(int j=0;j<this->numUser;j++)
+        for(int i=0;i<(this->s+j)->numBl;i++)
+        {   
+            cout<<(this->s+j)->getname()<<",";
+            cout<<(this->s+j)->ab[i].gettitle()<<endl;
+        }
+    // ifstream readfile("muonsach.txt");
+    // string name,title,m,t;
+    // while(! readfile.eof())
+    // {
+    //     getline(readfile,name,',');
+    //     cout<<name<<",";
+    //     getline(readfile,title,',');
+    //     cout<<title<<",";
+    //     getline(readfile,m,',');
+    //     cout<<m<<",";
+    //     getline(readfile,t);
+    //     cout<<t<<endl;
+    // }
+    // readfile.close();
+}
+void Funu::borrowB()
+{   
+    ofstream addfile("muonsach.txt",ios::out| ios::app);
+    Func bl;int k;Book b;int select=0;string selectU;string selectB;
+    //readMS();
+    readUser();
+    bl.readBook();
+    do
+    {   
+        showUser();
+        cout<<"Chon nguoi dung muon muon sach theo ma nguoi dung:";
+        cin>>selectU;
+        for(int i=0;i<this->numUser;i++)
+        {
+            if((this->s+i)->getID() == selectU)
+            {
+                k=i;
+                break;
+            }
+        }
+        bl.showAll();
+        cout<<"Chon sach trong thu vien:"; 
+        cin>>selectB;
+        for(int i=0;i<bl.getnumBook();i++)
+        {
+            if((bl.b+i)->getnumCode() == selectB)
+            {
+                b=*(bl.b+i);
+                break;
+            }
+        }
+        //addBl(k,b);
+        addfile<<endl;
+        addfile<<(this->s+k)->getname()<<",";
+        addfile<<b.gettitle()<<",";
+        cout<<"Nhap ngay/thang/nam muon sach:"<<endl;
+        int d,m,y;
+        cin>>d>>m>>y;
+        Date muon(d,m,y);
+        addfile<<d<<"/"<<m<<"/"<<y<<",";
+        cout<<"Nhap ngay/thang/nam tra sach:"<<endl;
+        fflush(stdin);
+        cin>>d>>m>>y;
+        Date tra(d,m,y);
+        addfile<<d<<"/"<<m<<"/"<<y;
+        cout<<"Nhap 0 de ket thuc viec muon sach!";
+        fflush(stdin);
+        cin>>select;
+        // if(select==0)
+        // {   
+        //     for(int j=0;j<this->numUser;j++)
+        //     for(int i=0;i<(this->s+j)->numBl;i++)
+        //     {   
+        //         addfile<<(this->s+j)->getname()<<",";
+        //         addfile<<(this->s+j)->bl[i].gettitle()<<endl;
+        //     }
+        // } 
+
+    } while (select == 1 );
+    addfile.close();
+}
+
+void returnB()
+{
+
 }

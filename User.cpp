@@ -1,21 +1,23 @@
 #include "User.h"
 using namespace std;
-User::User()
-{
-    this-> ID= "Ma thu vien";
-    this-> name="Ten";
-    this-> age=0;
-    this-> phonenumber="So dien thoai";
-    this-> address="Dia chi";
-}
+// User::User()
+// {
+//     this-> ID= "Ma thu vien";
+//     this-> name="Ten";
+//     this-> age=0;
+//     this-> phonenumber="So dien thoai";
+//     this-> address="Dia chi";
+// }
 
 User::User( string ID, string name, int age, string phonenumber, string address )
 {
-    this-> ID=ID;
-    this-> name=name;
-    this-> age=age;
-    this-> phonenumber=phonenumber;
-    this-> address=address;
+    this->ID=ID;
+    this->name=name;
+    this->age=age;
+    this->phonenumber=phonenumber;
+    this->address=address;
+    this->ab=nullptr;
+    this->numBl=0;
 }
 string User::getID()
 {
@@ -57,4 +59,15 @@ void User::setaddress(string address)
 {
     this->address=address;
 }
-User::~User(){}
+int User::getnumBl()
+{
+    return this->numBl;
+}
+void User::setnumBl(int n)
+{
+    this->numBl=n;
+}
+User::~User()
+{
+    delete[] this->ab;
+}

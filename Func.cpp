@@ -2,15 +2,14 @@
 #include<cstdlib>
 #include "Func.h"
 
-Func::Func(int numBook,int numUser)
+Func::Func(int numBook)
 {   
     this->b=0;
-    this->s=0;
     this->numBook=0;
-    this->numUser=0;
 }
 Func::~Func()
 {
+    delete[] this->b;
 }
 int Func::getnumBook()
 {
@@ -29,12 +28,9 @@ void Func::readBook()
         string numCode;
         getline(readfile,numCode,',');
         tmp.setnumCode(numCode);
-        string name;
-        getline(readfile,name,',');
-        tmp.setname(name);
-        string quantity;
-        getline(readfile,quantity,',');
-        tmp.setquantity(atoi(quantity.c_str()));
+        string title;
+        getline(readfile,title,',');
+        tmp.settitle(title);
         string category;
         getline(readfile,category,',');
         tmp.setcategory(category);
@@ -42,11 +38,8 @@ void Func::readBook()
         getline(readfile,author,',');
         tmp.setauthor(author);
         string publisher;
-        getline(readfile,publisher,',');
+        getline(readfile,publisher);
         tmp.setpublisher(publisher);
-        string status;
-        getline(readfile,status);
-        tmp.setstatus(atoi(status.c_str()));
         if(this->numBook == 0)
         {   
             this->b=new Book[this->numBook+1];
@@ -78,16 +71,15 @@ void Func::showAll()
     for(int i=0;i<this->numBook;i++)
     {
         cout<<(this->b+i)->getnumCode()<<", ";
-        cout<<(this->b+i)->getname()<<", ";
-        cout<<(this->b+i)->getquantity()<<", ";
+        cout<<(this->b+i)->gettitle()<<", ";
         cout<<(this->b+i)->getcategory()<<", ";
         cout<<(this->b+i)->getauthor()<<", ";
-        cout<<(this->b+i)->getpublisher()<<", ";
-        cout<<(this->b+i)->getstatus()<<endl;
+        cout<<(this->b+i)->getpublisher()<<endl;
     }
 }
 void Func::addBook()
-{      
+{   
+    readBook(); 
     showAll();
     ofstream addfile("book.txt", ios::out| ios::app);
     Book tmp;
@@ -102,14 +94,8 @@ void Func::addBook()
     fflush(stdin);
     cout<<"Nhap ten sach: ";
     getline(cin,s);
-    tmp.setname(s);
-    addfile<<tmp.getname();
-    addfile<<",";
-    fflush(stdin);
-    cout<<"Nhap so luong: ";
-    cin>>num;
-    tmp.setquantity(num);
-    addfile<<tmp.getquantity();
+    tmp.settitle(s);
+    addfile<<tmp.gettitle();
     addfile<<",";
     fflush(stdin);
     cout<<"Nhap the loai: ";
@@ -128,12 +114,8 @@ void Func::addBook()
     getline(cin,s);
     tmp.setpublisher(s);
     addfile<<tmp.getpublisher();
-    addfile<<",";
+    // addfile<<",";
     fflush(stdin);
-    cout<<"Nhap tinh trang: ";
-    cin>>num;
-    tmp.setstatus(num);
-    addfile<<tmp.getstatus();
     if(this->numBook == 0)
     {   
         this->b=new Book[this->numBook+1];
@@ -160,6 +142,7 @@ void Func::addBook()
 }
 void Func::insertBook(int index)
 {   
+    readBook();
     showAll();
     ofstream addfile("book.txt", ios::out| ios::trunc);
     Book tmp;
@@ -176,11 +159,7 @@ void Func::insertBook(int index)
     fflush(stdin);
     cout<<"Nhap ten sach: ";
     getline(cin,name);
-    tmp.setname(name);
-    fflush(stdin);
-    cout<<"Nhap so luong: ";
-    cin>>quantity;
-    tmp.setquantity(quantity);
+    tmp.settitle(name);
     fflush(stdin);
     cout<<"Nhap the loai: ";
     getline(cin,category);
@@ -194,9 +173,6 @@ void Func::insertBook(int index)
     getline(cin,publisher);
     tmp.setpublisher(publisher);
     fflush(stdin);
-    cout<<"Nhap tinh trang: ";
-    cin>>status;
-    tmp.setstatus(status);
     Book *q=new Book[this->numBook];
     for(int i=0;i<this->numBook;i++)
     {
@@ -218,12 +194,10 @@ void Func::insertBook(int index)
     for(int i=0;i<this->numBook;i++)
     {
         addfile<<(this->b+i)->getnumCode()<<",";
-        addfile<<(this->b+i)->getname()<<",";
-        addfile<<(this->b+i)->getquantity()<<",";
+        addfile<<(this->b+i)->gettitle()<<",";
         addfile<<(this->b+i)->getcategory()<<",";
         addfile<<(this->b+i)->getauthor()<<",";
-        addfile<<(this->b+i)->getpublisher()<<",";
-        addfile<<(this->b+i)->getstatus();
+        addfile<<(this->b+i)->getpublisher();
         if(i<this->numBook-1) addfile<<endl;
     }
     addfile.close();
@@ -231,6 +205,7 @@ void Func::insertBook(int index)
 
 void Func::removeBook()
 {   
+    readBook();
     showAll();
     string temp;
     cout<<"Nhap ma sach muon xoa: ";
@@ -275,12 +250,10 @@ void Func::removeBook()
     for(int i=0;i<this->numBook;i++)
     {
         addfile<<(this->b+i)->getnumCode()<<",";
-        addfile<<(this->b+i)->getname()<<",";
-        addfile<<(this->b+i)->getquantity()<<",";
+        addfile<<(this->b+i)->gettitle()<<",";
         addfile<<(this->b+i)->getcategory()<<",";
         addfile<<(this->b+i)->getauthor()<<",";
-        addfile<<(this->b+i)->getpublisher()<<",";
-        addfile<<(this->b+i)->getstatus();
+        addfile<<(this->b+i)->getpublisher();
         if(i<this->numBook-1) addfile<<endl;
     }
     addfile.close();
@@ -288,6 +261,7 @@ void Func::removeBook()
 
 void Func::updateBook()
 {
+    readBook();
     showAll();
     int select=0;
     do
@@ -309,11 +283,9 @@ void Func::updateBook()
         cout<<"Chon so tu 1 den 7 sua:"<<endl;
         cout<<"1.Ma sach"<<endl;
         cout<<"2.Ten sach"<<endl;
-        cout<<"3.So luong "<<endl;
-        cout<<"4.The loai "<<endl;
-        cout<<"5.Tac gia "<<endl;
-        cout<<"6.NXB"<<endl;
-        cout<<"7.Tinh trang"<<endl;
+        cout<<"3.The loai "<<endl;
+        cout<<"4.Tac gia "<<endl;
+        cout<<"5.NXB"<<endl;
         cout<<"0.Thoat"<<endl;
         fflush(stdin);
         cin>>select;
@@ -331,49 +303,35 @@ void Func::updateBook()
                 cout<<"Nhap ten sach moi: ";
                 fflush(stdin);
                 getline(cin,s);
-                (this->b+k)->setname(s);
+                (this->b+k)->settitle(s);
                 break;
             case 3:
-                cout<<"Nhap so luong moi: ";
-                fflush(stdin);
-                cin>>x;
-                (this->b+k)->setquantity(x);
-                break;
-            case 4:
                 cout<<"Nhap the loai moi:";
                 fflush(stdin);
                 getline(cin,s);
                 (this->b+k)->setcategory(s);
                 break;
-            case 5:
+            case 4:
                 cout<<"Nhap tac gia moi:";
                 fflush(stdin);
                 getline(cin,s);
                 (this->b+k)->setauthor(s);
                 break;
-            case 6:
+            case 5:
                 cout<<"Nhap NXB moi:";
                 fflush(stdin);
                 getline(cin,s);
                 (this->b+k)->setpublisher(s);
-                break;
-            case 7:
-                cout<<"Nhap tinh trang moi:";
-                fflush(stdin);
-                cin>>x;
-                (this->b+k)->setstatus(x);
                 break;
         }
         ofstream addfile("book.txt", ios::out| ios::trunc);
         for(int i=0;i<this->numBook;i++)
         {
             addfile<<(this->b+i)->getnumCode()<<",";
-            addfile<<(this->b+i)->getname()<<",";
-            addfile<<(this->b+i)->getquantity()<<",";
+            addfile<<(this->b+i)->gettitle()<<",";
             addfile<<(this->b+i)->getcategory()<<",";
             addfile<<(this->b+i)->getauthor()<<",";
-            addfile<<(this->b+i)->getpublisher()<<",";
-            addfile<<(this->b+i)->getstatus();
+            addfile<<(this->b+i)->getpublisher();
             if(i<this->numBook-1) addfile<<endl;
         }
         addfile.close();
